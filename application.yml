@@ -1,0 +1,43 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: bala-cluster-elasticsearch
+  output:
+    ansi:
+      enabled: always
+#  profiles:
+#   active: native
+  cloud:
+    config:
+      enabled: true
+      server:
+ #       native:
+  #        search-locations:
+   #         - classpath:/config
+    #        - classpath:/app
+     #       - classpath:/db
+      #  overrides:
+       #   Name: Override
+        git:
+#          uri: file://${user.home}/config-server-repo
+          uri: <<     mentiond your local git repo path       >>
+          skipSslValidation: true
+          timeout: 4
+          searchPaths: conf
+        health:
+          repositories:
+           bala-cluster-elasticsearch:
+            label: master
+            name: bala-cluster-elasticsearch
+            profiles: default
+
+management:
+  security:
+    enabled:  false
+
+security:
+  user:
+    name: admin
+    password: admin
